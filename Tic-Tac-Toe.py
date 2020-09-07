@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Author: THSWind
 
 import random
 import time
@@ -61,7 +62,7 @@ def random_choose_action():
 
 def choose_action(current_state):  #current_state is similar to  'iiiiOXOii'
     #agent 'X'  
-    if random.uniform()<EPSILON:
+    if random.uniform(0,1)<EPSILON:
         empty1=[x for x in list(range(1,10)) if x not in pos_rec]
         if(len(empty1)==0):
             return
@@ -115,7 +116,7 @@ def reset():
     for r in range(0, ENV_H * UNIT, UNIT):
         x0, y0, x1, y1 = 0, r, ENV_H * UNIT, r
         canvas.create_line(x0, y0, x1, y1)
-    #time.sleep(0.3)
+    time.sleep(0.5)
     canvas.pack()
     window.update()   
 # 'O'
@@ -128,7 +129,7 @@ def random_step(action,chess_state_i,pos_rec):
             chess_state_i+=temp_state[k]
         else:
             chess_state_i+='O'
-    #time.sleep(0.2)
+    time.sleep(0.3)
     canvas.create_text(key_dict[str(action)],text='O',font="time 25 bold")         
     canvas.pack()
     window.update()
@@ -146,7 +147,7 @@ def agent_step(action,chess_state_i):
             chess_state_i+='X'
     #print('agent after, '+chess_state_i)
     canvas.create_text(key_dict[str(action)],text='X',font="time 25 bold")
-    #time.sleep(0.2)
+    time.sleep(0.3)
     canvas.pack()
     window.update()
     return chess_state_i
